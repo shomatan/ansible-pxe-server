@@ -1,1 +1,43 @@
 ---
+# nginx
+- name: Create CentOS ISO directory.
+  file: path=/var/www/html/centos7 state=directory
+
+- name: Create kickstart files directory.
+  file: path=/var/www/html/kickstart state=directory
+
+- name: Copy pxe-server nginx config in place .
+  template: src=nginx.conf.j2 dest=/etc/nginx/conf.d/pxe-server.conf
+  notify: reload nginx
+
+# tftp
+- name: Create {{ item }} directory.
+  file: path=/var/lib/tftpboot/{{ item }} state=directory
+  with_items:
+    - pxelinux.cfg
+    - pxelinux
+
+- name: Copy {{ item }} file.
+  copy: src=/usr/share/syslinux/{{ item }} dest=/var/lib/tftpboot/
+  with_items:
+    - pxelinux.0
+    - menu.c32
+
+- name: Download {{ item }} from http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/isolinux
+  get_url: url=http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/isolinux/{{ item }} dest=/var/lib/tftpboot/{{ item }}
+  with_items:
+    - initrd.img
+    - vmlinuz
+
+- name: Download centos7.iso
+  get_url: url=http://ftp.riken.jp/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso dest=/var/lib/tftpboot/centos7.iso
+
+# ISO mount
+- name: Edit fstab.
+  lineinfile:
+    dest: /etc/fstab
+    regexp: '.*\/var\/lib\/tftpboot\/centos7\.iso.*'
+    line: '/var/lib/tftpboot/centos7.iso /var/www/html/centos7 iso9660 loop,defaults 0 0'
+  notify: mount immediately
+
+# PXE menu.

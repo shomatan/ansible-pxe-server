@@ -1,0 +1,15 @@
+# {{ ansible_managed }}
+
+server {
+  listen {{ pxe_server_listen_port }};
+
+  autoindex on;
+
+  location /centos7 {
+    root /var/www/html;
+  }
+
+  location /kickstart {
+    root /var/www/html;
+  }
+}
