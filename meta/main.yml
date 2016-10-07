@@ -2,4 +2,5 @@
 dependencies:
   - { role: nginx }
   - { role: xinetd }
-  - { role: tftp }  
+  - { role: tftp }
+  - { role: dhcpd }

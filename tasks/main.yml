@@ -23,6 +23,7 @@
     - pxelinux.0
     - menu.c32
 
+# download ISO
 - name: Download isolinux files from http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/isolinux
   get_url: url=http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/isolinux/{{ item }} dest=/var/lib/tftpboot/{{ item }}
   with_items:
@@ -37,3 +38,5 @@
   mount: name={{ pxe_server_iso_mount_path }} src={{ pxe_server_iso_file_path }} opts=ro,loop fstype=iso9660 state=mounted
 
 # PXE menu.
+- name: Copy default menu.
+  template: src=default.menu.j2 dest=/var/lib/tftpboot/pxelinux.cfg/default
