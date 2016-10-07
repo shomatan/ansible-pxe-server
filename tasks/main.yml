@@ -33,11 +33,7 @@
   get_url: url=http://ftp.riken.jp/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso dest=/var/lib/tftpboot/centos7.iso
 
 # ISO mount
-- name: Edit fstab.
-  lineinfile:
-    dest: /etc/fstab
-    regexp: '.*\/var\/lib\/tftpboot\/centos7\.iso.*'
-    line: '/var/lib/tftpboot/centos7.iso /var/www/html/centos7 iso9660 loop,defaults 0 0'
-  notify: mount immediately
+- name: Mount the CentOS image.
+  mount: name=/var/www/html/centos7 src=/var/lib/tftpboot/centos7.iso opts=ro,loop fstype=iso9660 state=mounted
 
 # PXE menu.
