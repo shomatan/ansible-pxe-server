@@ -1,7 +1,7 @@
 ---
 # nginx
 - name: Create CentOS ISO directory.
-  file: path=/var/www/html/centos7 state=directory
+  file: path={{ pxe_server_iso_mount_path }} state=directory
 
 - name: Create kickstart files directory.
   file: path=/var/www/html/kickstart state=directory
@@ -11,29 +11,29 @@
   notify: reload nginx
 
 # tftp
-- name: Create {{ item }} directory.
+- name: Create pxelinux directories.
   file: path=/var/lib/tftpboot/{{ item }} state=directory
   with_items:
     - pxelinux.cfg
     - pxelinux
 
-- name: Copy {{ item }} file.
+- name: Copy syslinux files.
   copy: src=/usr/share/syslinux/{{ item }} dest=/var/lib/tftpboot/
   with_items:
     - pxelinux.0
     - menu.c32
 
-- name: Download {{ item }} from http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/isolinux
+- name: Download isolinux files from http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/isolinux
   get_url: url=http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/isolinux/{{ item }} dest=/var/lib/tftpboot/{{ item }}
   with_items:
     - initrd.img
     - vmlinuz
 
 - name: Download centos7.iso
-  get_url: url=http://ftp.riken.jp/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso dest=/var/lib/tftpboot/centos7.iso
+  get_url: url={{ pxe_server_iso_download_path }} dest={{ pxe_server_iso_file_path }}
 
 # ISO mount
 - name: Mount the CentOS image.
-  mount: name=/var/www/html/centos7 src=/var/lib/tftpboot/centos7.iso opts=ro,loop fstype=iso9660 state=mounted
+  mount: name={{ pxe_server_iso_mount_path }} src={{ pxe_server_iso_file_path }} opts=ro,loop fstype=iso9660 state=mounted
 
 # PXE menu.

@@ -6,7 +6,7 @@ server {
   autoindex on;
 
   location /centos7 {
-    root /var/www/html;
+    alias {{ pxe_server_iso_mount_path }};
   }
 
   location /kickstart {
