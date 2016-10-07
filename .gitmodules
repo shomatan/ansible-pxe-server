@@ -1,0 +1,9 @@
+[submodule "roles/tftp"]
+	path = roles/tftp
+	url = https://github.com/shomatan/ansible-tftp.git
+[submodule "roles/xinetd"]
+	path = roles/xinetd
+	url = https://github.com/shomatan/ansible-xinetd.git
+[submodule "roles/nginx"]
+	path = roles/nginx
+	url = https://github.com/shomatan/ansible-nginx.git
