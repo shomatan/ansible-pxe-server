@@ -1,5 +1,5 @@
 # Ansible role: pxe-server
-Installs and configures TFTP server.
+Installs and configures PXE/TFTP server.
 
 ## Requirements
 None.
