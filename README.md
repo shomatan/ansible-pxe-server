@@ -21,6 +21,8 @@ None.
 - [tftp](https://github.com/shomatan/ansible-tftp.git)
 - [xinetd](https://github.com/shomatan/ansible-xinetd.git)
 
+## Example playbook
+
 ```yaml
 - hosts: all
   roles:
