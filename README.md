@@ -13,7 +13,7 @@ None.
 |pxe_server_iso_mount_path|String||/var/www/html/centos7|
 |pxe_server_default_timeout|Integer||300|
 |pxe_server_default_title|String||########## CentOS 7 PXE Boot Menu ##########|
-|pxe_server_default_menu|Hash||{} `See Example playbook`|
+|pxe_server_default_menu|Hash|Key: display label name. Value: kickstart file name.|{}|
 
 ## Dependencies
 - [dhcpd](https://github.com/shomatan/ansible-dhcpd.git)
