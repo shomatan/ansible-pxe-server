@@ -3,7 +3,9 @@
 default menu.c32
 prompt 0
 timeout {{ pxe_server_default_timeout }}
-ONTIMEOUT 1
+
+# ONTIMEOUT=1, the user presses <Enter> to boot.
+#ONTIMEOUT 1
 
 menu title {{ pxe_server_default_title }}
 
