@@ -11,6 +11,7 @@ None.
 |pxe_server_iso_file_path|String||/var/lib/tftpboot/centos7.iso|
 |pxe_server_iso_download_path|String||[CentOS-7-x86_64-Minimal-1511.iso](http://ftp.riken.jp/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso)|
 |pxe_server_iso_mount_path|String||/var/www/html/centos7|
+|pxe_server_kickstart_path|String||/var/www/html/kickstart|
 |pxe_server_default_timeout|Integer||300|
 |pxe_server_default_title|String||########## CentOS 7 PXE Boot Menu ##########|
 |pxe_server_default_menu|Hash|Key: display label name. Value: kickstart file name.|{}|

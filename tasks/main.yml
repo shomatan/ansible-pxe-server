@@ -4,7 +4,7 @@
   file: path={{ pxe_server_iso_mount_path }} state=directory
 
 - name: Create kickstart files directory.
-  file: path=/var/www/html/kickstart state=directory
+  file: path={{ pxe_server_kickstart_path }} state=directory
 
 - name: Copy pxe-server nginx config in place .
   template: src=nginx.conf.j2 dest=/etc/nginx/conf.d/pxe-server.conf
