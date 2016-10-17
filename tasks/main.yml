@@ -6,7 +6,7 @@
 - name: Create kickstart files directory.
   file: path={{ pxe_server_kickstart_path }} state=directory
 
-- name: Copy pxe-server nginx config in place .
+- name: Copy pxe-server nginx config in place.
   template: src=nginx.conf.j2 dest=/etc/nginx/conf.d/pxe-server.conf
   notify: reload nginx
 
@@ -18,7 +18,7 @@
     - pxelinux
 
 - name: Copy syslinux files.
-  copy: src=/usr/share/syslinux/{{ item }} dest=/var/lib/tftpboot/
+  copy: src="/usr/share/syslinux/{{ item }}" dest=/var/lib/tftpboot/ remote_src=True
   with_items:
     - pxelinux.0
     - menu.c32
