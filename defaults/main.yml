@@ -1,7 +1,7 @@
 ---
 pxe_server_listen: "127.0.0.1:8188"
 pxe_server_iso_file_path: /var/lib/tftpboot/centos7.iso
-pxe_server_iso_download_path: "http://ftp.riken.jp/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso"
+pxe_server_iso_download_path: "http://ftp.riken.jp/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso"
 pxe_server_iso_mount_path: /var/www/html/centos7
 pxe_server_kickstart_path: /var/www/html/kickstart
 
