@@ -1,10 +1,10 @@
 ---
 # nginx
 - name: Create CentOS ISO directory.
-  file: path={{ pxe_server_iso_mount_path }} state=directory
+  file: path={{ pxe_server_kickstart_iso_mount_path }} state=directory
 
 - name: Create kickstart files directory.
-  file: path={{ pxe_server_kickstart_path }} state=directory
+  file: path={{ pxe_server_kickstart_file_path }} state=directory
 
 - name: Copy pxe-server nginx config in place.
   template: src=nginx.conf.j2 dest=/etc/nginx/conf.d/pxe-server.conf
@@ -31,11 +31,11 @@
     - vmlinuz
 
 - name: Download centos7.iso
-  get_url: url={{ pxe_server_iso_download_path }} dest={{ pxe_server_iso_file_path }}
+  get_url: url={{ pxe_server_kickstart_iso_download_path }} dest={{ pxe_server_kickstart_iso_file_path }}
 
 # ISO mount
 - name: Mount the CentOS image.
-  mount: name={{ pxe_server_iso_mount_path }} src={{ pxe_server_iso_file_path }} opts=ro,loop fstype=iso9660 state=mounted
+  mount: name={{ pxe_server_kickstart_iso_mount_path }} src={{ pxe_server_kickstart_iso_file_path }} opts=ro,loop fstype=iso9660 state=mounted
 
 # PXE menu.
 - name: Copy default menu.

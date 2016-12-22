@@ -2,15 +2,15 @@
 
 default menu.c32
 prompt 0
-timeout {{ pxe_server_default_timeout }}
+timeout {{ pxe_server_kickstart_default_timeout }}
 
 # ONTIMEOUT=1, the user presses <Enter> to boot.
 #ONTIMEOUT 1
 
-menu title {{ pxe_server_default_title }}
+menu title {{ pxe_server_kickstart_default_title }}
 
-{% for key, value in pxe_server_default_menu.iteritems() %}
+{% for key, value in pxe_server_kickstart_default_menu.iteritems() %}
 label {{ key }}
     kernel vmlinuz
-    append initrd=initrd.img inst.repo=http://{{ pxe_server_listen }}/centos7/ ks=http://{{ pxe_server_listen }}/kickstart/{{ value }}
+    append initrd=initrd.img inst.repo=http://{{ pxe_server_kickstart_listen }}/centos7/ ks=http://{{ pxe_server_kickstart_listen }}/kickstart/{{ value }}
 {% endfor %}

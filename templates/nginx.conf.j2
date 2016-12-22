@@ -1,12 +1,12 @@
 # {{ ansible_managed }}
 
 server {
-  listen {{ pxe_server_listen }};
+  listen {{ pxe_server_kickstart_listen }};
 
   autoindex on;
 
   location /centos7 {
-    alias {{ pxe_server_iso_mount_path }};
+    alias {{ pxe_server_kickstart_iso_mount_path }};
   }
 
   location /kickstart {
