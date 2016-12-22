@@ -12,20 +12,20 @@
 
 # tftp
 - name: Create pxelinux directories.
-  file: path=/var/lib/tftpboot/{{ item }} state=directory
+  file: path={{ pxe_server_kickstart_tftpboot_path }}/{{ item }} state=directory
   with_items:
     - pxelinux.cfg
     - pxelinux
 
 - name: Copy syslinux files.
-  copy: src="/usr/share/syslinux/{{ item }}" dest=/var/lib/tftpboot/ remote_src=True
+  copy: src="/usr/share/syslinux/{{ item }}" dest={{ pxe_server_kickstart_tftpboot_path }}/ remote_src=True
   with_items:
     - pxelinux.0
     - menu.c32
 
 # download ISO
 - name: Download isolinux files from http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/isolinux
-  get_url: url=http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/isolinux/{{ item }} dest=/var/lib/tftpboot/{{ item }}
+  get_url: url=http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/isolinux/{{ item }} dest={{ pxe_server_kickstart_tftpboot_path }}/{{ item }}
   with_items:
     - initrd.img
     - vmlinuz
@@ -39,4 +39,4 @@
 
 # PXE menu.
 - name: Copy default menu.
-  template: src=default.menu.j2 dest=/var/lib/tftpboot/pxelinux.cfg/default
+  template: src=default.menu.j2 dest={{ pxe_server_kickstart_tftpboot_path }}/pxelinux.cfg/default
