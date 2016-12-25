@@ -27,11 +27,11 @@ None.
 ```yaml
 - hosts: all
   roles:
-    - { role: pxe-server }
+    - { role: pxe-server-kickstart }
   vars:
     pxe_server_kickstart_listen: "192.168.33.2:8188"
     pxe_server_kickstart_default_menu:
-      "Install CentOS7": centos7.ks
+      "Install CentOS7": "centos7.ks"
     dhcpd_bind_interface: enp0s8
     dhcpd_subnets:
       - subnet: 192.168.33.0
@@ -40,5 +40,5 @@ None.
         next_server: 192.168.33.2
         range: "192.168.33.240 192.168.33.250"
         options:
-          filename: pxelinux.0
+          filename: centos/pxelinux.0
 ```
