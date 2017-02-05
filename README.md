@@ -1,4 +1,4 @@
-# Ansible role: pxe-server
+# Ansible role: pxe-server-kickstart
 Installs and configures PXE/TFTP server.
 
 ## Requirements
@@ -27,7 +27,7 @@ None.
 ```yaml
 - hosts: all
   roles:
-    - { role: pxe-server-kickstart }
+    - { role: pxe-server-kickstart-kickstart }
   vars:
     pxe_server_kickstart_listen: "192.168.33.2:8188"
     pxe_server_kickstart_default_menu:
