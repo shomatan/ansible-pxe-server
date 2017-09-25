@@ -1,6 +1,16 @@
----
+galaxy_info:
+  author: Shoma Nishitateno
+  description: Installs and configures L2TP/IPsec server
+  license: license BSD
+  min_ansible_version: 1.2
+  platforms:
+    - name: EL
+      versions:
+        - 7
+  galaxy_tags: []
+
 dependencies:
-  - { role: nginx }
-  - { role: xinetd }
-  - { role: tftp }
-  - { role: dhcpd }
+  - shomatan.nginx
+  - shomatan.dhcpd
+  - shomatan.tftp
+  - shomatan.xinetd
